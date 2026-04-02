@@ -21,14 +21,15 @@ if %ERRORLEVEL% NEQ 0 (
     echo [0] winget not found -- installing via official Microsoft script...
     powershell -NoProfile -ExecutionPolicy Bypass -Command ^
         "$ProgressPreference='SilentlyContinue'; irm https://raw.githubusercontent.com/asheroto/winget-install/master/winget-install.ps1 | iex"
-    set "PATH=%LOCALAPPDATA%\Microsoft\WindowsApps;%PATH%"
-    where winget >nul 2>&1
-    if %ERRORLEVEL% NEQ 0 (
-        echo [ERROR] Failed to install winget. Install manually from https://aka.ms/getwinget
-        pause
-        exit /b 1
-    )
-    echo winget installed successfully.
+)
+
+REM Refresh PATH and locate winget (may be in WindowsApps or Program Files)
+set "PATH=%LOCALAPPDATA%\Microsoft\WindowsApps;%PROGRAMFILES%\WinGet\Links;%PATH%"
+where winget >nul 2>&1
+if %ERRORLEVEL% NEQ 0 (
+    echo [ERROR] Failed to install winget. Install manually from https://aka.ms/getwinget
+    pause
+    exit /b 1
 )
 
 set "SCRIPT_DIR=%~dp0"
