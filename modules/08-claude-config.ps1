@@ -1,6 +1,8 @@
 # Module: Claude Code Config (from GitHub)
 Write-Host "  --- Claude Code Config ---" -ForegroundColor Cyan
 
+$env:PATH = "$env:PROGRAMFILES\Git\cmd;$env:PATH"
+
 $claudeDir = "$env:USERPROFILE\.claude"
 if (-not (Test-Path $claudeDir)) { New-Item -ItemType Directory -Path $claudeDir -Force | Out-Null }
 

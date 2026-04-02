@@ -1,6 +1,8 @@
 # Module: Git Config (delta integration)
 Write-Host "  --- Git Config ---" -ForegroundColor Cyan
 
+$env:PATH = "$env:PROGRAMFILES\Git\cmd;$env:PATH"
+
 if (Get-Command git -ErrorAction SilentlyContinue) {
     git config --global core.pager delta
     git config --global interactive.diffFilter "delta --color-only"
