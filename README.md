@@ -6,7 +6,7 @@ One-click modular installer for a fresh Windows machine. Installs apps, configur
 
 One-liner in PowerShell (no Git needed):
 ```powershell
-irm https://github.com/bgevorkian/windows-setup/archive/main.zip -OutFile setup.zip; Expand-Archive setup.zip .; .\windows-setup-main\setup.bat
+cd ~; irm https://github.com/bgevorkian/windows-setup/archive/main.zip -OutFile setup.zip; Expand-Archive setup.zip . -Force; .\windows-setup-main\setup.bat
 ```
 
 After setup, sync secrets:
