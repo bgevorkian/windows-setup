@@ -15,12 +15,19 @@ echo   Windows Fresh Setup
 echo  ========================================
 echo.
 
-REM --- Check winget ---
+REM --- Check and install winget ---
 where winget >nul 2>&1
 if %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] winget not found. Install App Installer from Microsoft Store.
-    pause
-    exit /b 1
+    echo [0] winget not found — installing...
+    powershell -Command "irm https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -OutFile '%TEMP%\winget.msixbundle'; Add-AppxPackage '%TEMP%\winget.msixbundle'"
+    set "PATH=%LOCALAPPDATA%\Microsoft\WindowsApps;%PATH%"
+    where winget >nul 2>&1
+    if %ERRORLEVEL% NEQ 0 (
+        echo [ERROR] Failed to install winget. Install manually from https://aka.ms/getwinget
+        pause
+        exit /b 1
+    )
+    echo winget installed successfully.
 )
 
 set "SCRIPT_DIR=%~dp0"
