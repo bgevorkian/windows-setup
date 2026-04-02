@@ -18,15 +18,9 @@ echo.
 REM --- Check and install winget ---
 where winget >nul 2>&1
 if %ERRORLEVEL% NEQ 0 (
-    echo [0] winget not found — installing with dependencies...
-    powershell -NoProfile -Command ^
-        "$ProgressPreference='SilentlyContinue'; " ^
-        "irm https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -OutFile $env:TEMP\vclibs.appx; " ^
-        "Add-AppxPackage $env:TEMP\vclibs.appx; " ^
-        "irm https://github.com/microsoft/microsoft-ui-xaml/releases/download/v2.8.6/Microsoft.UI.Xaml.2.8.x64.appx -OutFile $env:TEMP\xaml.appx; " ^
-        "Add-AppxPackage $env:TEMP\xaml.appx; " ^
-        "irm https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -OutFile $env:TEMP\winget.msixbundle; " ^
-        "Add-AppxPackage $env:TEMP\winget.msixbundle"
+    echo [0] winget not found -- installing via official Microsoft script...
+    powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+        "$ProgressPreference='SilentlyContinue'; irm https://raw.githubusercontent.com/asheroto/winget-install/master/winget-install.ps1 | iex"
     set "PATH=%LOCALAPPDATA%\Microsoft\WindowsApps;%PATH%"
     where winget >nul 2>&1
     if %ERRORLEVEL% NEQ 0 (
