@@ -22,7 +22,7 @@ $ModulesDir = Join-Path $ScriptDir "modules"
 # =====================================================================
 if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
     Write-Host "  [0] Installing winget..." -ForegroundColor Yellow
-    irm https://raw.githubusercontent.com/asheroto/winget-install/master/winget-install.ps1 | iex
+    Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command `"irm https://raw.githubusercontent.com/asheroto/winget-install/master/winget-install.ps1 | iex`"" -Wait
     Write-Host ""
 }
 
