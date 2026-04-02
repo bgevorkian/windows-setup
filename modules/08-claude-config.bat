@@ -9,6 +9,9 @@ if not exist "%CLAUDE_DIR%" mkdir "%CLAUDE_DIR%"
 set "TEMP_CLONE=%TEMP%\claude-config-clone"
 if exist "%TEMP_CLONE%" rmdir /s /q "%TEMP_CLONE%"
 
+REM Refresh PATH so git installed in module 01 is available
+set "PATH=%PROGRAMFILES%\Git\cmd;%PATH%"
+
 echo Cloning claude-config from GitHub...
 git clone https://github.com/bgevorkian/claude-config.git "%TEMP_CLONE%" 2>nul
 

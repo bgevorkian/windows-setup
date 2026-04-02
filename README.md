@@ -4,11 +4,9 @@ One-click modular installer for a fresh Windows machine. Installs apps, configur
 
 ## Quick Start
 
+One-liner in PowerShell (no Git needed):
 ```powershell
-# Clone and run (as Administrator)
-git clone https://github.com/bgevorkian/windows-setup.git
-cd windows-setup
-.\setup.bat
+irm https://github.com/bgevorkian/windows-setup/archive/main.zip -OutFile setup.zip; Expand-Archive setup.zip .; .\windows-setup-main\setup.bat
 ```
 
 After setup, sync secrets:
