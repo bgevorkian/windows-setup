@@ -10,7 +10,8 @@ $tempClone = "$env:TEMP\claude-config-clone"
 if (Test-Path $tempClone) { Remove-Item $tempClone -Recurse -Force }
 
 if (Get-Command git -ErrorAction SilentlyContinue) {
-    git clone https://github.com/bgevorkian/claude-config.git $tempClone 2>$null
+    Write-Host "  Cloning claude-config..." -ForegroundColor White
+    git clone https://github.com/bgevorkian/claude-config.git $tempClone
 
     if (Test-Path "$tempClone\CLAUDE.md") {
         Copy-Item "$tempClone\CLAUDE.md" "$claudeDir\CLAUDE.md" -Force

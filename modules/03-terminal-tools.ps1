@@ -2,12 +2,13 @@
 Write-Host "  --- Terminal Tools ---" -ForegroundColor Cyan
 
 function Install-App($id, $name) {
-    Write-Host "  $name... " -NoNewline
-    $result = winget install $id --accept-source-agreements --accept-package-agreements --silent 2>&1
-    if ($result -match "already installed") {
-        Write-Host "already installed" -ForegroundColor DarkGray
+    Write-Host ""
+    Write-Host "  [$name] winget install $id" -ForegroundColor White
+    winget install $id --accept-source-agreements --accept-package-agreements --silent
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host "  [$name] OK" -ForegroundColor Green
     } else {
-        Write-Host "done" -ForegroundColor Green
+        Write-Host "  [$name] exit code: $LASTEXITCODE" -ForegroundColor Yellow
     }
 }
 

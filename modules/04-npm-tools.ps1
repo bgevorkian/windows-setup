@@ -5,12 +5,12 @@ Write-Host "  --- NPM Tools (MCP servers) ---" -ForegroundColor Cyan
 $env:PATH = "$env:PROGRAMFILES\nodejs;$env:APPDATA\npm;$env:PATH"
 
 if (Get-Command npm -ErrorAction SilentlyContinue) {
-    Write-Host "  postgresql-mcp... " -NoNewline
-    npm install -g "@sarmadparvez/postgresql-mcp" 2>$null | Out-Null
-    Write-Host "done" -ForegroundColor Green
-    Write-Host "  mssql-mcp... " -NoNewline
-    npm install -g "@iforge.it/mssql-mcp" 2>$null | Out-Null
-    Write-Host "done" -ForegroundColor Green
+    Write-Host ""
+    Write-Host "  [postgresql-mcp] npm install -g @sarmadparvez/postgresql-mcp" -ForegroundColor White
+    npm install -g "@sarmadparvez/postgresql-mcp"
+    Write-Host ""
+    Write-Host "  [mssql-mcp] npm install -g @iforge.it/mssql-mcp" -ForegroundColor White
+    npm install -g "@iforge.it/mssql-mcp"
 } else {
     Write-Host "  [SKIP] npm not found" -ForegroundColor Yellow
 }
