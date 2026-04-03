@@ -4,7 +4,7 @@ Write-Host "  --- Dev Tools ---" -ForegroundColor Cyan
 function Install-App($id, $name) {
     Write-Host ""
     Write-Host "  [$name] winget install $id" -ForegroundColor White
-    winget install $id --accept-source-agreements --accept-package-agreements --silent
+    winget install $id --source winget --accept-source-agreements --accept-package-agreements --silent
     if ($LASTEXITCODE -eq 0) {
         Write-Host "  [$name] OK" -ForegroundColor Green
     } else {
